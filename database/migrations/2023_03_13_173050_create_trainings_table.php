@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->unsignedBigInteger('gym_card_id');
+            $table->unsignedBigInteger('gym_card_exercise_id');
             $table->timestamps();
 
-            $table->foreign('gym_card_id')
+            $table->foreign('gym_card_exercise_id')
                 ->references('id')
-                ->on('gym_cards');
+                ->on('gym_card_exercises');
         });
     }
 

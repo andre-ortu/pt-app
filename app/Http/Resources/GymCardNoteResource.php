@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GymCardResource extends JsonResource
+class GymCardNoteResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,8 @@ class GymCardResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'reps' => $this->reps,
-            'recovery' => $this->recovery,
-            'successful' => $this->exerciseIsSuccessful()
+            'body' => $this->body,
+            'date' => $this->created_at->format('d/m/Y')
         ];
     }
 }

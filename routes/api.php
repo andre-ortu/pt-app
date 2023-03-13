@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/gym-card/{gymCardExercise}/successful', [\App\Http\Controllers\Api\GymCardController::class, 'setSuccessfulExercise']);
+Route::post('/gym-card/{gymCardExercise}/note', [\App\Http\Controllers\Api\GymCardController::class, 'addNote']);

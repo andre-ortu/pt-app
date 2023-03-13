@@ -9,14 +9,4 @@ class GymCard extends Model
 {
     use HasFactory;
 
-    public function exerciseIsSuccessful()
-    {
-        $date = now()->toDateString();
-        return !! $this->trainings->where('date', $date)->count();
-    }
-
-    public function trainings()
-    {
-        return $this->hasMany(Training::class);
-    }
 }

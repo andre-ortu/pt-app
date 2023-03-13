@@ -15,11 +15,10 @@ return new class extends Migration
         Schema::create('gym_cards', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedSmallInteger('day')->default(1);
-            $table->unsignedSmallInteger('exercise')->default(1);
-            $table->string('name');
-            $table->string('reps');
-            $table->string('recovery')->nullable();
+            $table->boolean('is_active');
+            $table->unsignedSmallInteger('days')->default(1);
+            $table->dateTime('valid_from');
+            $table->dateTime('valid_to');
             $table->timestamps();
 
             $table->foreign('user_id')

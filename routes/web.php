@@ -25,9 +25,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\Api\GymCardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/card/{gymCardExercise}', [\App\Http\Controllers\Api\GymCardController::class, 'show'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

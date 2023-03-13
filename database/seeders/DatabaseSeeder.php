@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Exercise;
 use App\Models\GymCard;
+use App\Models\GymCardExercise;
+use App\Models\GymCardExerciseNote;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,26 +26,50 @@ class DatabaseSeeder extends Seeder
              'password' => Hash::make('password')
          ]);
 
-         GymCard::create([
+         $gymCard = GymCard::create([
              'user_id' => $user->id,
+             'days' => 2,
+             'is_active' => true,
+             'valid_from' => now(),
+             'valid_to' => now()->addMonths(2),
+         ]);
+         $exercise = Exercise::create([
+             'name' => 'Cyclette'
+         ]);
+        $exercise1 = Exercise::create([
+            'name' => 'Panca Piana'
+        ]);
+        $exercise2 = Exercise::create([
+            'name' => 'Panca Inclinata'
+        ]);
+         $first = GymCardExercise::create([
+             'gym_card_id' => $gymCard->id,
              'day' => 1,
-             'exercise' => 1,
-             'name' => 'Cyclette',
+             'exercise_id' => $exercise->id,
              'reps' => '4/5min',
          ]);
-        GymCard::create([
-            'user_id' => $user->id,
+
+        GymCardExercise::create([
+            'gym_card_id' => $gymCard->id,
             'day' => 1,
-            'exercise' => 2,
-            'name' => 'Panca Piana',
-            'reps' => '1m30sec',
+            'number_of_exercise' => 2,
+            'exercise_id' => $exercise1->id,
+            'reps' => '8/10',
         ]);
-        GymCard::create([
-            'user_id' => $user->id,
+        GymCardExercise::create([
+            'gym_card_id' => $gymCard->id,
             'day' => 1,
-            'exercise' => 2,
-            'name' => 'Panca Inclinata',
-            'reps' => '1m30sec',
+            'number_of_exercise' => 2,
+            'exercise_id' => $exercise2->id,
+            'reps' => '8/10',
+        ]);
+        GymCardExerciseNote::create([
+            'gym_card_exercise_id' => $first->id,
+            'body' => '10x9 tranquillo'
+        ]);
+        GymCardExerciseNote::create([
+            'gym_card_exercise_id' => $first->id,
+            'body' => '10x12 tranquillo provare 12x8'
         ]);
     }
 }

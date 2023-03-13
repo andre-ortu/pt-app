@@ -5,9 +5,9 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class GymCardCollection extends ResourceCollection
+class GymCardNoteCollection extends ResourceCollection
 {
-    public $collects = GymCardResource::class;
+    public $collects = GymCardNoteResource::class;
 
     /**
      * Transform the resource collection into an array.
@@ -16,8 +16,10 @@ class GymCardCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
+        $sorted = $this->collection->sortByDesc('created_at');
+
         return [
-            'data' => $this->collection->groupBy('exercise')->toArray()
+            'data' => $sorted->values()->all()
         ];
     }
 }
