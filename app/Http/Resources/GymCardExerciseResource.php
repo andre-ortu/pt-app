@@ -16,7 +16,7 @@ class GymCardExerciseResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->exercise->name,
+            'name' => ucfirst(strtolower($this->exercise->name)),
             'reps' => $this->reps,
             'sets' => $this->sets,
             'recovery' => $this->recovery,
