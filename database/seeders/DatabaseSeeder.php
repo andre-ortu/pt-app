@@ -116,6 +116,16 @@ class DatabaseSeeder extends Seeder
         GymCardExercise::create([
             'gym_card_id' => $gymCard->id,
             'day' => 1,
+            'exercise_id' => Exercise::create(['name' => 'Leg Extension'])->id,
+            'number_of_exercise' => 8,
+            'sets' => 3,
+            'reps' => '10/12',
+            'recovery' => '1min'
+        ]);
+
+        GymCardExercise::create([
+            'gym_card_id' => $gymCard->id,
+            'day' => 1,
             'exercise_id' => Exercise::create(['name' => 'CRUNCH CON FUNE AL CAVO ALTO'])->id,
             'number_of_exercise' => 9,
             'sets' => 4,
