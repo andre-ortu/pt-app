@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('reps');
             $table->unsignedSmallInteger('sets')->default(4);
             $table->string('recovery')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
 
             $table->foreign('gym_card_id')

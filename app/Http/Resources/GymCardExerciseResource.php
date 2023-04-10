@@ -20,6 +20,7 @@ class GymCardExerciseResource extends JsonResource
             'reps' => $this->reps,
             'sets' => $this->sets,
             'recovery' => $this->recovery,
+            'type' => $this->type,
             'successful' => $this->exerciseIsSuccessful(),
             'notes' => new GymCardNoteCollection($this->notes)
         ];

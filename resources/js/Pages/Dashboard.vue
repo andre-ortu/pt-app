@@ -66,7 +66,17 @@ const goToPage = (exerciseId) => {
                             <div :class="exercise.successful ? 'bg-green-400' : 'bg-white'" class="overflow-hidden shadow-sm rounded-lg flex justify-between m-1">
                                 <div class="flex flex justify-between w-full" @click="goToPage(exercise.id)">
                                     <div :class="exercise.successful ? 'text-gray-600 px-2' : 'text-gray-500'" class="p-2">{{ exercise.name }}</div>
-                                    <small :class="exercise.successful ? 'text-gray-600 px-2' : 'text-gray-400'" class="text-xs py-2 my-auto"><span v-if="exercise.sets">{{ exercise.sets}}x</span>{{ exercise.reps }} reps</small>
+                                    <div>
+                                        <small :class="exercise.successful ? 'text-gray-600 px-2' : 'text-gray-400'" class="text-xs py-2 my-auto"><span v-if="exercise.sets">{{ exercise.sets}}x</span>{{ exercise.reps }} reps</small>
+
+                                        <div v-if="exercise.type">
+                                            <div
+                                                class="mb-2 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-green-200 text-green-700 rounded-full"
+                                            >
+                                                {{ exercise.type }}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="text-gray-900">
                                     <div v-if="! exercise.successful" class="p-2" @click="successfulCard(exercise)">
