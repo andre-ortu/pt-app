@@ -7,6 +7,8 @@ import axios from "axios";
 
 const attrs = useAttrs();
 const user = attrs.auth.user;
+console.log('here');
+console.log(user);
 const cardRerenderKey = ref(0);
 const toast = ref({
     show: false,

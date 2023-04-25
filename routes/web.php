@@ -15,18 +15,12 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::redirect('/', 'dashboard');
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', [\App\Http\Controllers\Api\GymCardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/card/{gymCardExercise}', [\App\Http\Controllers\Api\GymCardController::class, 'show'])->middleware(['auth', 'verified']);
 });
-
-Route::get('/dashboard', [\App\Http\Controllers\Api\GymCardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/card/{gymCardExercise}', [\App\Http\Controllers\Api\GymCardController::class, 'show'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

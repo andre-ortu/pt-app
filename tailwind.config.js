@@ -16,10 +16,10 @@ module.exports = {
                 sans: ['Varela Round', ...defaultTheme.fontFamily.sans],
             },
         },
-    },
-    colors: {
-        primary: colors.teal,
-        secondary: colors.gray,
+        colors: {
+            primary: colors.teal,
+            secondary: colors.gray,
+        }
     },
 
     plugins: [
